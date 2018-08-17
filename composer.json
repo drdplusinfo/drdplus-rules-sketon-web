@@ -2,7 +2,7 @@
   "name": "drd-plus/rules-skeleton-web",
   "license": "MIT",
   "type": "library",
-  "description": "Content for DrD+ skeleton",
+  "description": "Content for DrD+ rules skeleton",
   "keywords": [
     "drd plus",
     "rules",
