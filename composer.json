@@ -1,0 +1,13 @@
+{
+  "name": "drd-plus/rules-skeleton-web",
+  "license": "MIT",
+  "type": "library",
+  "description": "Content for DrD+ skeleton",
+  "keywords": [
+    "drd plus",
+    "rules",
+    "helper",
+    "skeleton",
+    "content"
+  ]
+}
