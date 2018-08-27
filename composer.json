@@ -9,5 +9,8 @@
     "helper",
     "skeleton",
     "content"
-  ]
+  ],
+  "require-dev": {
+    "phpunit/phpunit": "^7.3"
+  }
 }
