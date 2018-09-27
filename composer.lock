@@ -4,8 +4,390 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0bd58da536a7f6b4910cf63f68555298",
-    "packages": [],
+    "content-hash": "9dd4289a40feba752ccb63454487a5c5",
+    "packages": [
+        {
+            "name": "granam/exceptions-hierarchy",
+            "version": "4.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jaroslavtyc/granam-exceptions-hierarchy.git",
+                "reference": "846b8592c8b673818569bbb103016723130bbf98"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jaroslavtyc/granam-exceptions-hierarchy/zipball/846b8592c8b673818569bbb103016723130bbf98",
+                "reference": "846b8592c8b673818569bbb103016723130bbf98",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~6.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Granam\\": "Granam/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "The hierarchy skeleton of exceptions in a project",
+            "homepage": "https://github.com/jaroslavtyc/granam-exceptions-hierarchy",
+            "keywords": [
+                "exception",
+                "hierarchy",
+                "logic",
+                "php",
+                "runtime"
+            ],
+            "time": "2017-02-19T12:25:30+00:00"
+        },
+        {
+            "name": "granam/scalar",
+            "version": "4.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jaroslavtyc/granam-scalar.git",
+                "reference": "c3f78968da6a24ca24b4bb3a2729e61287df7ae3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jaroslavtyc/granam-scalar/zipball/c3f78968da6a24ca24b4bb3a2729e61287df7ae3",
+                "reference": "c3f78968da6a24ca24b4bb3a2729e61287df7ae3",
+                "shasum": ""
+            },
+            "require": {
+                "granam/strict-object": "^3.0",
+                "granam/tools": "^3.0",
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "granam/exceptions-hierarchy": "~4.0",
+                "mockery/mockery": "~1.0",
+                "phpunit/phpunit": "~7.0"
+            },
+            "type": "project",
+            "autoload": {
+                "psr-4": {
+                    "Granam\\": "Granam/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jaroslav Týc",
+                    "homepage": "http://jaroslavtyc.com",
+                    "role": "Original author"
+                }
+            ],
+            "description": "Lightweight scalar-type container",
+            "homepage": "https://github.com/jaroslavtyc/granam-scalar",
+            "keywords": [
+                "php",
+                "scalar"
+            ],
+            "time": "2018-08-13T13:05:50+00:00"
+        },
+        {
+            "name": "granam/strict-object",
+            "version": "3.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jaroslavtyc/granam-strict-object.git",
+                "reference": "58456d294ac6671316f0a688a682f85467c7a37b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jaroslavtyc/granam-strict-object/zipball/58456d294ac6671316f0a688a682f85467c7a37b",
+                "reference": "58456d294ac6671316f0a688a682f85467c7a37b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "granam/exceptions-hierarchy": "~4.0",
+                "phpunit/phpunit": "~6.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Granam\\": "Granam/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jaroslav Týc",
+                    "homepage": "https://www.jaroslavtyc.com",
+                    "role": "Original author"
+                }
+            ],
+            "description": "Base object, checking access to undefined properties and methods",
+            "homepage": "https://github.com/jaroslavtyc/granam-strict-object",
+            "keywords": [
+                "access",
+                "object",
+                "permissions",
+                "php",
+                "read",
+                "strict",
+                "write"
+            ],
+            "time": "2017-02-19T12:21:14+00:00"
+        },
+        {
+            "name": "granam/string",
+            "version": "3.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/granam/granam-string.git",
+                "reference": "39d5caa02260757c8c0154ecda144a8bc699255e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/granam/granam-string/zipball/39d5caa02260757c8c0154ecda144a8bc699255e",
+                "reference": "39d5caa02260757c8c0154ecda144a8bc699255e",
+                "shasum": ""
+            },
+            "require": {
+                "ext-intl": "*",
+                "ext-mbstring": "*",
+                "granam/scalar": "^4.0",
+                "granam/strict-object": "^3.0",
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "ext-mbstring": "*",
+                "granam/exceptions-hierarchy": ">=4.0",
+                "mockery/mockery": "~1.0",
+                "phpunit/phpunit": "~7.0"
+            },
+            "suggest": {
+                "ext-iconv": "*",
+                "ext-intl": "*",
+                "ext-mbstring": "*"
+            },
+            "type": "project",
+            "autoload": {
+                "psr-4": {
+                    "Granam\\": "Granam/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jaroslav Týc",
+                    "homepage": "https://www.jaroslavtyc.com",
+                    "role": "Original author"
+                }
+            ],
+            "description": "Lightweight string wrapper",
+            "homepage": "https://github.com/jaroslavtyc/granam-string",
+            "keywords": [
+                "object",
+                "php",
+                "string"
+            ],
+            "time": "2018-09-08T10:07:08+00:00"
+        },
+        {
+            "name": "granam/tools",
+            "version": "3.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jaroslavtyc/granam-tools.git",
+                "reference": "281a08cf7e7d7665b20855f002a7b9180e94c86a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jaroslavtyc/granam-tools/zipball/281a08cf7e7d7665b20855f002a7b9180e94c86a",
+                "reference": "281a08cf7e7d7665b20855f002a7b9180e94c86a",
+                "shasum": ""
+            },
+            "require": {
+                "granam/strict-object": "^3.0",
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "doctrine/orm": "2.*",
+                "granam/exceptions-hierarchy": "~4.0",
+                "mockery/mockery": "~1.0",
+                "phpunit/phpunit": "~7.0"
+            },
+            "type": "project",
+            "autoload": {
+                "psr-4": {
+                    "Granam\\": "Granam/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jaroslav Týc",
+                    "homepage": "http://jaroslavtyc.com",
+                    "role": "Original author"
+                }
+            ],
+            "description": "Toolbox",
+            "homepage": "https://github.com/jaroslavtyc/granam-tools",
+            "keywords": [
+                "Toolbox",
+                "object",
+                "php",
+                "string"
+            ],
+            "time": "2018-07-20T06:12:40+00:00"
+        },
+        {
+            "name": "phpgt/dom",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PhpGt/Dom.git",
+                "reference": "00a6b16ef9ac2d88b2a53178115db7e946f861bc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PhpGt/Dom/zipball/00a6b16ef9ac2d88b2a53178115db7e946f861bc",
+                "reference": "00a6b16ef9ac2d88b2a53178115db7e946f861bc",
+                "shasum": ""
+            },
+            "require": {
+                "ext-dom": "*",
+                "php": ">=7.1.0",
+                "symfony/css-selector": "3.2.*"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Gt\\Dom\\": "./src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Greg Bowler",
+                    "email": "greg.bowler@g105b.com",
+                    "homepage": "https://www.g105b.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Alvaro Guimaraes",
+                    "homepage": "https://github.com/aguimaraes",
+                    "role": "Developer"
+                },
+                {
+                    "name": "James Fellows",
+                    "homepage": "https://github.com/j4m3s",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Emile Ward",
+                    "homepage": "https://github.com/emileward",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Jelmer Wijnja",
+                    "homepage": "https://github.com/Jelmergu",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Ognjen Petrovic",
+                    "homepage": "https://github.com/ognjen-petrovic",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Jacob Bearden",
+                    "homepage": "https://github.com/jacobbearden",
+                    "role": "Documentation contributor"
+                },
+                {
+                    "name": "Jaroslav Týc",
+                    "homepage": "https://www.jaroslavtyc.com/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "The modern DOM API for PHP 7 projects.",
+            "time": "2018-09-20T17:22:18+00:00"
+        },
+        {
+            "name": "symfony/css-selector",
+            "version": "v3.2.14",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/css-selector.git",
+                "reference": "02983c144038e697c959e6b06ef6666de759ccbc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/css-selector/zipball/02983c144038e697c959e6b06ef6666de759ccbc",
+                "reference": "02983c144038e697c959e6b06ef6666de759ccbc",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\CssSelector\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jean-François Simon",
+                    "email": "jeanfrancois.simon@sensiolabs.com"
+                },
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony CssSelector Component",
+            "homepage": "https://symfony.com",
+            "time": "2017-05-01T14:55:58+00:00"
+        }
+    ],
     "packages-dev": [
         {
             "name": "doctrine/instantiator",
@@ -1421,6 +1803,9 @@
     "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "ext-dom": "*",
+        "ext-yaml": "*"
+    },
     "platform-dev": []
 }
