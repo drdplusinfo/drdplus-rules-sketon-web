@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace DrdPlus\Web\RulesSkeleton;
+namespace DrdPlus\RulesSkeleton\Web;
 
 use Granam\Strict\Object\StrictObject;
 use Granam\String\StringInterface;
@@ -25,11 +25,11 @@ class RulesContent extends StrictObject implements StringInterface
      */
     private $dirs;
     /**
-     * @var HtmlHelper
+     * @var RulesHtmlHelper
      */
     private $htmlHelper;
 
-    public function __construct(Dirs $dirs, HtmlHelper $htmlHelper)
+    public function __construct(Dirs $dirs, RulesHtmlHelper $htmlHelper)
     {
         $this->dirs = $dirs;
         $this->htmlHelper = $htmlHelper;
@@ -45,6 +45,11 @@ class RulesContent extends StrictObject implements StringInterface
         return $this->content->getValue();
     }
 
+    public function getHtmlDocument(): HtmlDocument
+    {
+        return $this->getContent()->getHtmlDocument();
+    }
+
     protected function getContent(): Content
     {
         if (!$this->content) {
@@ -58,11 +63,11 @@ class RulesContent extends StrictObject implements StringInterface
         return $this->content;
     }
 
-    protected function buildContent(HtmlHelper $htmlHelper, Head $head, Body $body): Content
+    protected function buildContent(RulesHtmlHelper $htmlHelper, Head $head, Body $body): Content
     {
         return new class($htmlHelper, $head, $body) extends Content
         {
-            public function __construct(HtmlHelper $htmlHelper, Head $head, Body $body)
+            public function __construct(RulesHtmlHelper $htmlHelper, Head $head, Body $body)
             {
                 parent::__construct($htmlHelper, $head, $body);
             }
@@ -70,7 +75,7 @@ class RulesContent extends StrictObject implements StringInterface
             protected function buildHtmlDocument(string $content): HtmlDocument
             {
                 $htmlDocument = parent::buildHtmlDocument($content);
-                /** @var HtmlHelper $htmlHelper */
+                /** @var RulesHtmlHelper $htmlHelper */
                 $htmlHelper = $this->htmlHelper;
                 $htmlHelper->addIdsToTablesAndHeadings($htmlDocument);
                 $htmlHelper->markExternalLinksByClass($htmlDocument);

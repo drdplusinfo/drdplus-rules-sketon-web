@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace DrdPlus\Web\RulesSkeleton\Exceptions;
+namespace DrdPlus\Tests\RulesSkeleton\Web\Exceptions;
 
 interface Runtime extends Exception
 {

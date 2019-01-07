@@ -1,15 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace DrdPlus\Web\RulesSkeleton;
+namespace DrdPlus\RulesSkeleton\Web;
 
 use Granam\WebContentBuilder\HtmlDocument;
 use Gt\Dom\Element;
 
-class HtmlHelper extends \Granam\WebContentBuilder\HtmlHelper
+class RulesHtmlHelper extends \Granam\WebContentBuilder\HtmlHelper
 {
     public const EXTERNAL_URL_CLASS = 'external-url';
     public const HIDDEN_CLASS = 'hidden';
+    public const DATA_HAS_MARKED_EXTERNAL_URLS = 'data-has-marked-external-urls';
 
     /**
      * Turn link into local version
@@ -18,7 +19,7 @@ class HtmlHelper extends \Granam\WebContentBuilder\HtmlHelper
      */
     public static function turnToLocalLink(string $link): string
     {
-        return \preg_replace('~https?://((?:[^.]+[.])*)drdplus\.info~', 'http://$1drdplus.loc:88', $link);
+        return \preg_replace('~https?://((?:[^.]+[.])*)drdplus\.info~', 'http://$1drdplus.loc', $link);
     }
 
     public function addIdsToTablesAndHeadings(HtmlDocument $htmlDocument): HtmlDocument
@@ -101,6 +102,7 @@ class HtmlHelper extends \Granam\WebContentBuilder\HtmlHelper
                 $anchor->classList->add(self::EXTERNAL_URL_CLASS);
             }
         }
+        $htmlDocument->body->setAttribute(self::DATA_HAS_MARKED_EXTERNAL_URLS, '1');
 
         return $htmlDocument;
     }

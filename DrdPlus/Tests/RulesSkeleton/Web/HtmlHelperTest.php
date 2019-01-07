@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace DrdPlus\Tests\Web\RulesSkeleton;
+namespace DrdPlus\Tests\RulesSkeleton\Web;
 
-use DrdPlus\Web\RulesSkeleton\HtmlDocument;
-use DrdPlus\Web\RulesSkeleton\HtmlHelper;
+use DrdPlus\RulesSkeleton\Web\RulesHtmlHelper;
 use Granam\String\StringTools;
+use Granam\WebContentBuilder\HtmlDocument;
 use Gt\Dom\Element;
 
 class HtmlHelperTest extends AbstractContentTest
@@ -18,14 +18,14 @@ class HtmlHelperTest extends AbstractContentTest
      */
     public function I_can_turn_public_link_to_local(string $publicLink, string $expectedLocalLink): void
     {
-        self::assertSame($expectedLocalLink, HtmlHelper::turnToLocalLink($publicLink));
+        self::assertSame($expectedLocalLink, RulesHtmlHelper::turnToLocalLink($publicLink));
     }
 
     public function providePublicAndLocalLinks(): array
     {
         return [
-            ['https://www.drdplus.info', 'http://www.drdplus.loc:88'],
-            ['https://hranicar.drdplus.info', 'http://hranicar.drdplus.loc:88'],
+            ['https://www.drdplus.info', 'http://www.drdplus.loc'],
+            ['https://hranicar.drdplus.info', 'http://hranicar.drdplus.loc'],
         ];
     }
 
@@ -34,17 +34,8 @@ class HtmlHelperTest extends AbstractContentTest
      */
     public function I_can_create_id_from_any_name(): void
     {
-        self::assertSame('kuala_lumpur', HtmlHelper::toId('Kuala lumpur'));
-        self::assertSame('krizaly_s_mrkvi', HtmlHelper::toId('Křížaly s mrkví'));
-    }
-
-    /**
-     * @test
-     * @expectedException \DrdPlus\Web\RulesSkeleton\Exceptions\NameToCreateHtmlIdFromIsEmpty
-     */
-    public function I_can_not_create_id_from_empty_name(): void
-    {
-        HtmlHelper::toId('');
+        self::assertSame('kuala_lumpur', RulesHtmlHelper::toId('Kuala lumpur'));
+        self::assertSame('krizaly_s_mrkvi', RulesHtmlHelper::toId('Křížaly s mrkví'));
     }
 
     /**
@@ -52,7 +43,7 @@ class HtmlHelperTest extends AbstractContentTest
      */
     public function I_can_get_filtered_tables_from_content(): void
     {
-        $htmlHelper = new HtmlHelper();
+        $htmlHelper = new RulesHtmlHelper($this->getDirs());
         $allTables = $htmlHelper->findTablesWithIds($this->getHtmlDocument());
         if (!$this->isSkeletonChecked() && !$this->getTestsConfiguration()->hasTables()) {
             self::assertCount(0, $allTables);
@@ -87,11 +78,12 @@ class HtmlHelperTest extends AbstractContentTest
      */
     public function Filtering_tables_by_id_does_not_crash_on_table_without_id(): void
     {
-        $htmlHelper = new HtmlHelper();
+        $htmlHelper = new RulesHtmlHelper($this->getDirs());
         $allTables = $htmlHelper->findTablesWithIds(new HtmlDocument(<<<HTML
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <title>Just a test</title>
   <meta charset="utf-8">
 </head>
 <body>
@@ -117,7 +109,7 @@ HTML
 
             return;
         }
-        $htmlHelper = new HtmlHelper();
+        $htmlHelper = new RulesHtmlHelper($this->getDirs());
         $someExpectedTableIds = $this->getTestsConfiguration()->getSomeExpectedTableIds();
         self::assertGreaterThan(0, \count($someExpectedTableIds), 'Some tables expected according to tests config');
         $tableId = \current($someExpectedTableIds);
@@ -130,9 +122,9 @@ HTML
      */
     public function It_will_not_add_anchor_into_anchor_with_id(): void
     {
-        $htmlHelper = new HtmlHelper();
+        $htmlHelper = new RulesHtmlHelper($this->getDirs());
         $content = '<!DOCTYPE html>
-<html><body><a href="" id="someId">Foo</a></body></html>';
+<html lang="en"><body><a href="" id="someId">Foo</a></body></html>';
         $htmlDocument = new HtmlDocument($content);
         $htmlHelper->addAnchorsToIds($htmlDocument);
         self::assertSame($content, \trim($htmlDocument->saveHTML()));
@@ -143,12 +135,13 @@ HTML
      */
     public function Ids_are_turned_to_constant_like_diacritics_free_format(): void
     {
-        $htmlHelper = new HtmlHelper();
+        $htmlHelper = new RulesHtmlHelper($this->getDirs());
         $originalId = 'Příliš # žluťoučký # kůň # úpěl # ďábelské # ódy';
         $htmlDocument = new HtmlDocument(<<<HTML
         <!DOCTYPE html>
 <html lang="cs-CZ">
 <head>
+  <title></title>
   <meta charset="utf-8">
 </head>
 <body>
@@ -171,14 +164,14 @@ HTML
 
     private function Original_id_is_accessible_without_change_via_data_attribute(Element $elementWithId, string $expectedOriginalId): void
     {
-        $fetchedOriginalId = $elementWithId->getAttribute(HtmlHelper::DATA_ORIGINAL_ID);
+        $fetchedOriginalId = $elementWithId->getAttribute(RulesHtmlHelper::DATA_ORIGINAL_ID);
         self::assertNotEmpty($fetchedOriginalId);
         self::assertSame($expectedOriginalId, $fetchedOriginalId);
     }
 
     private function Original_id_can_be_used_as_anchor_via_inner_invisible_element(Element $elementWithId, string $expectedOriginalId): void
     {
-        $invisibleIdElements = $elementWithId->getElementsByClassName(HtmlHelper::INVISIBLE_ID_CLASS);
+        $invisibleIdElements = $elementWithId->getElementsByClassName(RulesHtmlHelper::INVISIBLE_ID_CLASS);
         self::assertCount(1, $invisibleIdElements);
         $invisibleIdElement = $invisibleIdElements[0];
         $invisibleId = $invisibleIdElement->id;
@@ -191,11 +184,12 @@ HTML
      */
     public function I_can_turn_public_drd_plus_links_to_locals(): void
     {
-        $htmlHelper = new HtmlHelper();
+        $htmlHelper = new RulesHtmlHelper($this->getDirs());
         $htmlDocument = new HtmlDocument(<<<HTML
         <!DOCTYPE html>
 <html lang="cs-CZ">
 <head>
+  <title></title>
   <meta charset="utf-8">
 </head>
 <body>
@@ -210,11 +204,11 @@ HTML
         $htmlHelper->makeDrdPlusLinksLocal($htmlDocument);
         $localizedLink = $htmlDocument->getElementById('single_link');
         self::assertNotEmpty($localizedLink, 'No element found by ID single_link');
-        self::assertSame('http://foo-bar.baz.drdplus.loc:88', $localizedLink->getAttribute('href'));
+        self::assertSame('http://foo-bar.baz.drdplus.loc', $localizedLink->getAttribute('href'));
         /** @var Element $localizedLocalLikeLink */
         $localizedLocalLikeLink = $htmlDocument->getElementById('marked_as_local');
         self::assertNotEmpty($localizedLocalLikeLink, 'No element found by ID marked_as_local');
-        self::assertSame('http://qux.drdplus.loc:88', $localizedLocalLikeLink->getAttribute('href'));
+        self::assertSame('http://qux.drdplus.loc', $localizedLocalLikeLink->getAttribute('href'));
     }
 
     /**
@@ -222,11 +216,12 @@ HTML
      */
     public function I_can_inject_iframes_with_remote_tables(): void
     {
-        $htmlHelper = new HtmlHelper();
+        $htmlHelper = new RulesHtmlHelper($this->getDirs());
         $htmlDocument = new HtmlDocument(<<<HTML
         <!DOCTYPE html>
 <html lang="cs-CZ">
 <head>
+ <title></title>
   <meta charset="utf-8">
 </head>
 <body>
@@ -253,24 +248,15 @@ HTML
 
     /**
      * @test
-     * @expectedException \DrdPlus\Web\RulesSkeleton\Exceptions\ExternalUrlsHaveToBeMarkedFirst
-     */
-    public function I_can_not_inject_iframe_with_remote_tables_without_previous_mark_of_external_urls(): void
-    {
-        $htmlHelper = new HtmlHelper();
-        $htmlHelper->injectIframesWithRemoteTables(new HtmlDocument());
-    }
-
-    /**
-     * @test
      */
     public function I_can_mark_external_links_by_class(): void
     {
-        $htmlHelper = new HtmlHelper();
+        $htmlHelper = new RulesHtmlHelper($this->getDirs());
         $htmlDocument = new HtmlDocument(<<<HTML
         <!DOCTYPE html>
 <html lang="cs-CZ">
 <head>
+  <title></title>
   <meta charset="utf-8">
 </head>
 <body>
@@ -279,11 +265,11 @@ HTML
 </htm>
 HTML
         );
-        self::assertNull($htmlDocument->body->getAttribute(HtmlHelper::DATA_HAS_MARKED_EXTERNAL_URLS));
+        self::assertNull($htmlDocument->body->getAttribute(RulesHtmlHelper::DATA_HAS_MARKED_EXTERNAL_URLS));
         $htmlHelper->markExternalLinksByClass($htmlDocument);
-        self::assertSame('1', $htmlDocument->body->getAttribute(HtmlHelper::DATA_HAS_MARKED_EXTERNAL_URLS));
+        self::assertSame('1', $htmlDocument->body->getAttribute(RulesHtmlHelper::DATA_HAS_MARKED_EXTERNAL_URLS));
         /** @var Element $linkWithoutAnchor */
         $linkWithoutAnchor = $htmlDocument->getElementById('link_without_anchor');
-        self::assertFalse($linkWithoutAnchor->classList->contains(HtmlHelper::EXTERNAL_URL_CLASS));
+        self::assertFalse($linkWithoutAnchor->classList->contains(RulesHtmlHelper::EXTERNAL_URL_CLASS));
     }
 }

@@ -10,6 +10,14 @@
     "skeleton",
     "content"
   ],
+  "autoload": {
+    "psr-4": {
+      "DrdPlus\\": "DrdPlus/"
+    }
+  },
+  "config": {
+    "sort-packages": true
+  },
   "require": {
     "ext-dom": "*",
     "ext-yaml": "*",

@@ -1,5 +1,5 @@
 <?php
-namespace DrdPlus\Tests\Web\RulesSkeleton\Exceptions;
+namespace DrdPlus\Tests\RulesSkeleton\Web\Exceptions;
 
 class PublicUrlShouldUseHttps extends InvalidPublicUrl
 {

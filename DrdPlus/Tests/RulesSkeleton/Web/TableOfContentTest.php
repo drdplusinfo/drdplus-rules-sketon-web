@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace DrdPlus\Tests\RulesSkeleton;
 
-use DrdPlus\Tests\Web\RulesSkeleton\AbstractContentTest;
-use DrdPlus\Web\RulesSkeleton\HtmlHelper;
+use DrdPlus\Tests\RulesSkeleton\Web\AbstractContentTest;
+use DrdPlus\RulesSkeleton\Web\RulesHtmlHelper;
 
 class TableOfContentTest extends AbstractContentTest
 {
@@ -29,7 +29,7 @@ class TableOfContentTest extends AbstractContentTest
                     continue;
                 }
                 $name = $anchor->textContent;
-                self::assertSame($link, '#' . HtmlHelper::toId($name));
+                self::assertSame($link, '#' . RulesHtmlHelper::toId($name));
             }
         }
     }
