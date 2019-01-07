@@ -5,6 +5,8 @@ namespace DrdPlus\Tests\RulesSkeleton;
 
 use DrdPlus\Tests\RulesSkeleton\Web\AbstractContentTest;
 use DrdPlus\RulesSkeleton\Web\RulesHtmlHelper;
+use Granam\WebContentBuilder\HtmlHelper;
+use Gt\Dom\Element;
 
 class TableOfContentTest extends AbstractContentTest
 {
@@ -14,15 +16,24 @@ class TableOfContentTest extends AbstractContentTest
      */
     public function I_can_navigate_to_chapter_with_same_name_as_table_of_contents_mentions(): void
     {
-        $contents = $this->getHtmlDocument()->getElementsByClassName('content');
+        /** @var Element $tableOfContent */
+        $tableOfContent = $this->getHtmlDocument()->getElementById(HtmlHelper::toId('table_of_content'));
         if (!$this->getTestsConfiguration()->hasTableOfContents()) {
-            self::assertCount(0, $contents, 'No items of table of contents expected due to tests configuration');
+            self::assertEmpty(
+                $tableOfContent,
+                'No items of table of contents expected due to tests configuration'
+            );
 
             return;
         }
-        self::assertNotEmpty($contents->count(), 'Expected some ".content" elements as items of a table of contents');
+        $contents = $tableOfContent->getElementsByClassName('content');
+        self::assertNotEmpty(
+            $contents,
+            'Expected some ".content" elements as items of a table of contents #tableOfContents' . $tableOfContent->outerHTML
+        );
         foreach ($contents as $content) {
             $anchors = $content->getElementsByTagName('a');
+            self::assertNotEmpty($anchors->count(), 'Expected some anchors in table of content ' . $content->outerHTML);
             foreach ($anchors as $anchor) {
                 $link = $anchor->getAttribute('href');
                 if (\strpos($link, '#') !== 0) {
