@@ -8,8 +8,6 @@ use DrdPlus\RulesSkeleton\Web\RulesHtmlHelper;
 use Granam\Tests\Tools\TestWithMockery;
 use Granam\WebContentBuilder\Dirs;
 use Granam\WebContentBuilder\HtmlDocument;
-use Granam\YamlReader\YamlFileReader;
-use Granam\YamlReader\YamlReader;
 
 abstract class AbstractContentTest extends TestWithMockery
 {
@@ -61,9 +59,7 @@ abstract class AbstractContentTest extends TestWithMockery
     protected function getTestsConfiguration(): TestsConfiguration
     {
         if ($this->testsConfiguration === null) {
-            $this->testsConfiguration = new TestsConfiguration(
-                (new YamlFileReader(\DRD_PLUS_TESTS_ROOT . '/tests_configuration.yml'))->getValues()
-            );
+            $this->testsConfiguration = TestsConfiguration::createFromYaml(\DRD_PLUS_TESTS_ROOT . '/tests_configuration.yml');
         }
 
         return $this->testsConfiguration;
