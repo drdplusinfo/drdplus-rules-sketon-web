@@ -25,32 +25,35 @@ abstract class AbstractContentTest extends TestWithMockery
         if ($this->rulesContent === null) {
             $this->rulesContent = new RulesContent($this->getDirs(), new RulesHtmlHelper($this->getDirs()));
         }
+
         return $this->rulesContent->getHtmlDocument();
     }
 
-    protected function isSkeletonChecked(string $skeletonDocumentRoot = null): bool
+    protected function isSkeletonChecked(string $skeletonProjectRoot = null): bool
     {
         if (self::$skeletonChecked === null) {
-            $documentRootRealPath = \realpath($this->getDocumentRoot());
-            self::assertNotEmpty($documentRootRealPath, 'Can not find out real path of document root ' . \var_export($this->getDocumentRoot(), true));
-            $skeletonRootRealPath = \realpath($skeletonDocumentRoot ?? __DIR__ . '/../../../..');
+            $projectRootRealPath = \realpath($this->getProjectRoot());
+            self::assertNotEmpty($projectRootRealPath, 'Can not find out real path of document root ' . \var_export($this->getProjectRoot(), true));
+            $skeletonRootRealPath = \realpath($skeletonProjectRoot ?? __DIR__ . '/../../../..');
             self::assertNotEmpty($skeletonRootRealPath, 'Can not find out real path of skeleton root ' . \var_export($skeletonRootRealPath, true));
 
-            self::$skeletonChecked = $documentRootRealPath === $skeletonRootRealPath;
+            self::$skeletonChecked = $projectRootRealPath === $skeletonRootRealPath;
         }
 
         return self::$skeletonChecked;
     }
 
-    protected function getDocumentRoot(): string
+    protected function getProjectRoot(): string
     {
+        self::assertDirectoryExists(\DRD_PLUS_PROJECT_ROOT, 'Project root has not been found');
+
         return \DRD_PLUS_PROJECT_ROOT;
     }
 
     protected function getDirs(): Dirs
     {
         if ($this->dirs === null) {
-            $this->dirs = new Dirs($this->getDocumentRoot());
+            $this->dirs = new Dirs($this->getProjectRoot());
         }
 
         return $this->dirs;
