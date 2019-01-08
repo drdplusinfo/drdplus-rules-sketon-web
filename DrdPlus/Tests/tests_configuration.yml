@@ -1,0 +1,14 @@
+has_tables: true
+some_expected_table_ids:
+  - IAmSoAlone
+  - JustSomeTable
+expected_web_name: 'HTML kostra pro DrDPlus, jakoby pravidla čaroděje'
+expected_page_title: '☠️ HTML kostra pro DrDPlus, jakoby pravidla čaroděje'
+expected_licence: 'MIT'
+too_short_failure_names:
+  - 'nevšiml si'
+too_short_success_names:
+  - 'všiml si'
+too_short_result_names:
+  - 'Bonus'
+  - 'Postih'

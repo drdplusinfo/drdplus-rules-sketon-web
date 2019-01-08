@@ -1,0 +1,47 @@
+<?php
+declare(strict_types=1);
+
+namespace DrdPlus\Tests\RulesSkeleton;
+
+use DrdPlus\Tests\RulesSkeleton\Web\AbstractContentTest;
+use DrdPlus\RulesSkeleton\Web\RulesHtmlHelper;
+use Granam\WebContentBuilder\HtmlHelper;
+use Gt\Dom\Element;
+
+class TableOfContentTest extends AbstractContentTest
+{
+
+    /**
+     * @test
+     */
+    public function I_can_navigate_to_chapter_with_same_name_as_table_of_contents_mentions(): void
+    {
+        /** @var Element $tableOfContent */
+        $tableOfContent = $this->getHtmlDocument()->getElementById(HtmlHelper::toId('table_of_content'));
+        if (!$this->getTestsConfiguration()->hasTableOfContents()) {
+            self::assertEmpty(
+                $tableOfContent,
+                'No items of table of contents expected due to tests configuration'
+            );
+
+            return;
+        }
+        $contents = $tableOfContent->getElementsByClassName('content');
+        self::assertNotEmpty(
+            $contents,
+            'Expected some ".content" elements as items of a table of contents #tableOfContents' . $tableOfContent->outerHTML
+        );
+        foreach ($contents as $content) {
+            $anchors = $content->getElementsByTagName('a');
+            self::assertNotEmpty($anchors->count(), 'Expected some anchors in table of content ' . $content->outerHTML);
+            foreach ($anchors as $anchor) {
+                $link = $anchor->getAttribute('href');
+                if (\strpos($link, '#') !== 0) {
+                    continue;
+                }
+                $name = $anchor->textContent;
+                self::assertSame($link, '#' . RulesHtmlHelper::toId($name));
+            }
+        }
+    }
+}
