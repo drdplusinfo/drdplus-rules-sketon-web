@@ -44,7 +44,7 @@ abstract class AbstractContentTest extends TestWithMockery
 
     protected function getDocumentRoot(): string
     {
-        return \DRD_PLUS_DOCUMENT_ROOT;
+        return \DRD_PLUS_PROJECT_ROOT;
     }
 
     protected function getDirs(): Dirs

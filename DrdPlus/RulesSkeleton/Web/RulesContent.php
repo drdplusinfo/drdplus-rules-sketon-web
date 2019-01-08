@@ -40,7 +40,7 @@ class RulesContent extends StrictObject implements StringInterface
 
     public function getValue(): string
     {
-        return $this->content->getValue();
+        return $this->getContent()->getValue();
     }
 
     public function getHtmlDocument(): HtmlDocument
@@ -87,6 +87,7 @@ class RulesContent extends StrictObject implements StringInterface
             protected function buildHtmlDocument(string $content): HtmlDocument
             {
                 $htmlDocument = parent::buildHtmlDocument($content);
+                $htmlDocument->body->className = 'container';
                 /** @var RulesHtmlHelper $htmlHelper */
                 $htmlHelper = $this->htmlHelper;
                 $htmlHelper->addIdsToTablesAndHeadings($htmlDocument);
