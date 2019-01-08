@@ -83,9 +83,6 @@ class TestsConfiguration extends StrictObject
         $this->someExpectedTableIds = $someExpectedTableIds;
     }
 
-    /**
-     * @param array $values
-     */
     private function setHasTableOfContents(array $values): void
     {
         $this->hasTableOfContents = (bool)($values[self::HAS_TABLE_OF_CONTENTS] ?? true);
