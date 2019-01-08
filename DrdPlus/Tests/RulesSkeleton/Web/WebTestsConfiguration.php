@@ -6,7 +6,7 @@ namespace DrdPlus\Tests\RulesSkeleton\Web;
 use Granam\Strict\Object\StrictObject;
 use Granam\YamlReader\YamlFileReader;
 
-class TestsConfiguration extends StrictObject
+class WebTestsConfiguration extends StrictObject
 {
     public const HAS_TABLES = 'has_tables';
     public const SOME_EXPECTED_TABLE_IDS = 'some_expected_table_ids';

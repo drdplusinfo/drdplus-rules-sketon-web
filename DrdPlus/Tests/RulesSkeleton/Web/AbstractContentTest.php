@@ -13,7 +13,7 @@ abstract class AbstractContentTest extends TestWithMockery
 {
     /** @var bool */
     private static $skeletonChecked;
-    /** @var TestsConfiguration */
+    /** @var WebTestsConfiguration */
     private $testsConfiguration;
     /** @var Dirs */
     private $dirs;
@@ -56,10 +56,10 @@ abstract class AbstractContentTest extends TestWithMockery
         return $this->dirs;
     }
 
-    protected function getTestsConfiguration(): TestsConfiguration
+    protected function getTestsConfiguration(): WebTestsConfiguration
     {
         if ($this->testsConfiguration === null) {
-            $this->testsConfiguration = TestsConfiguration::createFromYaml(\DRD_PLUS_TESTS_ROOT . '/tests_configuration.yml');
+            $this->testsConfiguration = WebTestsConfiguration::createFromYaml(\DRD_PLUS_TESTS_ROOT . '/tests_configuration.yml');
         }
 
         return $this->testsConfiguration;
