@@ -16,18 +16,16 @@ use Granam\WebContentBuilder\Web\WebFiles;
 
 class RulesContent extends StrictObject implements StringInterface
 {
-    /**
-     * @var Content
-     */
+    /** @var Content */
     private $content;
-    /**
-     * @var Dirs
-     */
+    /** @var Dirs */
     private $dirs;
-    /**
-     * @var RulesHtmlHelper
-     */
+    /** @var RulesHtmlHelper */
     private $htmlHelper;
+    /** @var Body */
+    private $body;
+    /** @var Head */
+    private $head;
 
     public function __construct(Dirs $dirs, RulesHtmlHelper $htmlHelper)
     {
@@ -50,14 +48,28 @@ class RulesContent extends StrictObject implements StringInterface
         return $this->getContent()->getHtmlDocument();
     }
 
+    public function getBody(): Body
+    {
+        if ($this->body === null) {
+            $this->body = new Body(new WebFiles($this->dirs->getWebRoot()));
+        }
+
+        return $this->body;
+    }
+
+    public function getHead(): Head
+    {
+        if ($this->head === null) {
+            $this->head = new Head($this->htmlHelper, new CssFiles($this->dirs, true), new JsFiles($this->dirs, true));
+        }
+
+        return $this->head;
+    }
+
     protected function getContent(): Content
     {
         if (!$this->content) {
-            $this->content = $this->buildContent(
-                $this->htmlHelper,
-                new Head($this->htmlHelper, new CssFiles($this->dirs, true), new JsFiles($this->dirs, true)),
-                new Body(new WebFiles($this->dirs->getWebRoot()))
-            );
+            $this->content = $this->buildContent($this->htmlHelper, $this->getHead(), $this->getBody());
         }
 
         return $this->content;
