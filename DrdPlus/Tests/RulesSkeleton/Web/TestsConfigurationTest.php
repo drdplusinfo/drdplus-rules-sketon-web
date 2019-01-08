@@ -23,7 +23,12 @@ class TestsConfigurationTest extends TestWithMockery
     {
         $sutClass = static::getSutClass();
 
-        return new $sutClass(\array_merge([TestsConfiguration::SOME_EXPECTED_TABLE_IDS => []], $config));
+        return new $sutClass(\array_merge($this->getTestsConfigurationDefaultValues(), $config));
+    }
+
+    protected function getTestsConfigurationDefaultValues(): array
+    {
+        return [TestsConfiguration::SOME_EXPECTED_TABLE_IDS => []];
     }
 
     protected static function getSutClass(string $sutTestClass = null, string $regexp = '~(.+)Test$~'): string
