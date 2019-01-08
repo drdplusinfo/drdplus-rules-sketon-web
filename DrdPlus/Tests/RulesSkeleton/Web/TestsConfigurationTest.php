@@ -3,9 +3,7 @@ declare(strict_types=1);
 
 namespace DrdPlus\Tests\RulesSkeleton\Web;
 
-use Granam\Tests\Tools\TestWithMockery;
-
-class TestsConfigurationTest extends TestWithMockery
+class TestsConfigurationTest extends AbstractContentTest
 {
 
     /**
