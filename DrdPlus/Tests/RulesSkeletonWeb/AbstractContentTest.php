@@ -4,10 +4,10 @@ declare(strict_types=1);
 namespace DrdPlus\Tests\RulesSkeletonWeb;
 
 use DrdPlus\RulesSkeletonWeb\RulesWebContent;
-use DrdPlus\RulesSkeletonWeb\RulesHtmlHelper;
 use Granam\Tests\Tools\TestWithMockery;
 use Granam\WebContentBuilder\Dirs;
 use Granam\WebContentBuilder\HtmlDocument;
+use Granam\WebContentBuilder\HtmlHelper;
 
 abstract class AbstractContentTest extends TestWithMockery
 {
@@ -23,7 +23,7 @@ abstract class AbstractContentTest extends TestWithMockery
     protected function getHtmlDocument(): HtmlDocument
     {
         if ($this->rulesContent === null) {
-            $this->rulesContent = new RulesWebContent($this->getDirs(), new RulesHtmlHelper($this->getDirs()));
+            $this->rulesContent = new RulesWebContent($this->getDirs(), new HtmlHelper($this->getDirs()));
         }
 
         return $this->rulesContent->getHtmlDocument();

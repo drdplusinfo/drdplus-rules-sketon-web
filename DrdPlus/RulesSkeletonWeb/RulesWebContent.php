@@ -7,6 +7,7 @@ use Granam\Strict\Object\StrictObject;
 use Granam\String\StringInterface;
 use Granam\WebContentBuilder\Dirs;
 use Granam\WebContentBuilder\HtmlDocument;
+use Granam\WebContentBuilder\HtmlHelper;
 use Granam\WebContentBuilder\Web\Body;
 use Granam\WebContentBuilder\Web\Content;
 use Granam\WebContentBuilder\Web\CssFiles;
@@ -20,14 +21,14 @@ class RulesWebContent extends StrictObject implements StringInterface
     private $content;
     /** @var Dirs */
     private $dirs;
-    /** @var RulesHtmlHelper */
+    /** @var HtmlHelper */
     private $htmlHelper;
     /** @var Body */
     private $body;
     /** @var Head */
     private $head;
 
-    public function __construct(Dirs $dirs, RulesHtmlHelper $htmlHelper)
+    public function __construct(Dirs $dirs, HtmlHelper $htmlHelper)
     {
         $this->dirs = $dirs;
         $this->htmlHelper = $htmlHelper;
@@ -75,24 +76,14 @@ class RulesWebContent extends StrictObject implements StringInterface
         return $this->content;
     }
 
-    protected function buildContent(RulesHtmlHelper $htmlHelper, Head $head, Body $body): Content
+    protected function buildContent(HtmlHelper $htmlHelper, Head $head, Body $body): Content
     {
         return new class($htmlHelper, $head, $body) extends Content
         {
-            public function __construct(RulesHtmlHelper $htmlHelper, Head $head, Body $body)
-            {
-                parent::__construct($htmlHelper, $head, $body);
-            }
-
             protected function buildHtmlDocument(string $content): HtmlDocument
             {
                 $htmlDocument = parent::buildHtmlDocument($content);
-                $htmlDocument->body->className = 'container';
-                /** @var RulesHtmlHelper $htmlHelper */
-                $htmlHelper = $this->htmlHelper;
-                $htmlHelper->addIdsToTablesAndHeadings($htmlDocument);
-                $htmlHelper->markExternalLinksByClass($htmlDocument);
-                $htmlHelper->injectIframesWithRemoteTables($htmlDocument);
+                $htmlDocument->body->classList->add('container');
 
                 return $htmlDocument;
             }

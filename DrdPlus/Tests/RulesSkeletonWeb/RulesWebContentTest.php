@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace DrdPlus\Tests\RulesSkeletonWeb;
 
 use DrdPlus\RulesSkeletonWeb\RulesWebContent;
-use DrdPlus\RulesSkeletonWeb\RulesHtmlHelper;
+use Granam\WebContentBuilder\HtmlHelper;
 
 class RulesWebContentTest extends AbstractContentTest
 {
@@ -18,7 +18,7 @@ class RulesWebContentTest extends AbstractContentTest
 
     private function getRulesContent(): RulesWebContent
     {
-        return new RulesWebContent($this->getDirs(), new RulesHtmlHelper($this->getDirs()));
+        return new RulesWebContent($this->getDirs(), new HtmlHelper($this->getDirs()));
     }
 
     /**
