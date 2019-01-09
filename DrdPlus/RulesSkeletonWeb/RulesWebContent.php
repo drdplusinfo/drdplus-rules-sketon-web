@@ -14,7 +14,7 @@ use Granam\WebContentBuilder\Web\Head;
 use Granam\WebContentBuilder\Web\JsFiles;
 use Granam\WebContentBuilder\Web\WebFiles;
 
-class RulesContent extends StrictObject implements StringInterface
+class RulesWebContent extends StrictObject implements StringInterface
 {
     /** @var Content */
     private $content;

@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace DrdPlus\Tests\RulesSkeletonWeb;
 
-use DrdPlus\RulesSkeletonWeb\RulesContent;
+use DrdPlus\RulesSkeletonWeb\RulesWebContent;
 use DrdPlus\RulesSkeletonWeb\RulesHtmlHelper;
 use Granam\Tests\Tools\TestWithMockery;
 use Granam\WebContentBuilder\Dirs;
@@ -17,13 +17,13 @@ abstract class AbstractContentTest extends TestWithMockery
     private $testsConfiguration;
     /** @var Dirs */
     private $dirs;
-    /** @var RulesContent */
+    /** @var RulesWebContent */
     private $rulesContent;
 
     protected function getHtmlDocument(): HtmlDocument
     {
         if ($this->rulesContent === null) {
-            $this->rulesContent = new RulesContent($this->getDirs(), new RulesHtmlHelper($this->getDirs()));
+            $this->rulesContent = new RulesWebContent($this->getDirs(), new RulesHtmlHelper($this->getDirs()));
         }
 
         return $this->rulesContent->getHtmlDocument();

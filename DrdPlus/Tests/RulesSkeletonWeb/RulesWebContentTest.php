@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace DrdPlus\Tests\RulesSkeletonWeb;
 
-use DrdPlus\RulesSkeletonWeb\RulesContent;
+use DrdPlus\RulesSkeletonWeb\RulesWebContent;
 use DrdPlus\RulesSkeletonWeb\RulesHtmlHelper;
 
-class RulesContentTest extends AbstractContentTest
+class RulesWebContentTest extends AbstractContentTest
 {
     /**
      * @test
@@ -16,9 +16,9 @@ class RulesContentTest extends AbstractContentTest
         self::assertSame($this->getHtmlDocument()->saveHTML(), $this->getRulesContent()->getValue());
     }
 
-    private function getRulesContent(): RulesContent
+    private function getRulesContent(): RulesWebContent
     {
-        return new RulesContent($this->getDirs(), new RulesHtmlHelper($this->getDirs()));
+        return new RulesWebContent($this->getDirs(), new RulesHtmlHelper($this->getDirs()));
     }
 
     /**
