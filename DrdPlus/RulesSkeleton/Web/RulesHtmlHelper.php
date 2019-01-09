@@ -107,6 +107,10 @@ class RulesHtmlHelper extends \Granam\WebContentBuilder\HtmlHelper
         return $htmlDocument;
     }
 
+    /**
+     * @param HtmlDocument $htmlDocument
+     * @return array|Element[]
+     */
     protected function getExternalAnchors(HtmlDocument $htmlDocument): array
     {
         $externalAnchors = [];
