@@ -107,6 +107,30 @@ class RulesHtmlHelper extends \Granam\WebContentBuilder\HtmlHelper
         return $htmlDocument;
     }
 
+    protected function getExternalAnchors(HtmlDocument $htmlDocument): array
+    {
+        $externalAnchors = [];
+        foreach ($htmlDocument->getElementsByTagName('a') as $anchor) {
+            if ($this->isAnchorExternal($anchor)) {
+                $externalAnchors[] = $anchor;
+            }
+        }
+
+        return $externalAnchors;
+    }
+
+    protected function isAnchorExternal(Element $anchor): bool
+    {
+        if ($anchor->tagName !== 'a') {
+            throw new Exceptions\ExpectedAnchorElement(
+                sprintf('Expected anchor element, got %s (%s)', $anchor->tagName, $anchor->innerHTML)
+            );
+        }
+
+        return !$anchor->classList->contains(self::INTERNAL_URL_CLASS)
+            && ($anchor->classList->contains(self::EXTERNAL_URL_CLASS) || $this->isLinkExternal($anchor->getAttribute('href')));
+    }
+
     /**
      * @param HtmlDocument $htmlDocument
      * @return HtmlDocument
