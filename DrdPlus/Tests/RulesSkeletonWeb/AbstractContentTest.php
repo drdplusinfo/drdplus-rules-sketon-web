@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace DrdPlus\Tests\RulesSkeleton\Web;
+namespace DrdPlus\Tests\RulesSkeletonWeb;
 
-use DrdPlus\RulesSkeleton\Web\RulesContent;
-use DrdPlus\RulesSkeleton\Web\RulesHtmlHelper;
+use DrdPlus\RulesSkeletonWeb\RulesContent;
+use DrdPlus\RulesSkeletonWeb\RulesHtmlHelper;
 use Granam\Tests\Tools\TestWithMockery;
 use Granam\WebContentBuilder\Dirs;
 use Granam\WebContentBuilder\HtmlDocument;

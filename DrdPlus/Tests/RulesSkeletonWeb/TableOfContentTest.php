@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace DrdPlus\Tests\RulesSkeleton;
 
-use DrdPlus\Tests\RulesSkeleton\Web\AbstractContentTest;
-use DrdPlus\RulesSkeleton\Web\RulesHtmlHelper;
+use DrdPlus\Tests\RulesSkeletonWeb\AbstractContentTest;
+use DrdPlus\RulesSkeletonWeb\RulesHtmlHelper;
 use Granam\WebContentBuilder\HtmlHelper;
 use Gt\Dom\Element;
 

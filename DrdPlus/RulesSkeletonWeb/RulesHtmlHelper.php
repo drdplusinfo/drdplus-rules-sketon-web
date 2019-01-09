@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace DrdPlus\RulesSkeleton\Web;
+namespace DrdPlus\RulesSkeletonWeb;
 
 use Granam\WebContentBuilder\HtmlDocument;
 use Gt\Dom\Element;

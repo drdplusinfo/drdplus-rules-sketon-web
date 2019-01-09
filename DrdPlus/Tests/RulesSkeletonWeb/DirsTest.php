@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace DrdPlus\Tests\RulesSkeleton\Web;
+namespace DrdPlus\Tests\RulesSkeletonWeb;
 
 use Granam\WebContentBuilder\Dirs;
 use PHPUnit\Framework\TestCase;

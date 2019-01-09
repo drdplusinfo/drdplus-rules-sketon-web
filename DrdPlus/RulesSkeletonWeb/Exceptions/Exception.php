@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace DrdPlus\RulesSkeleton\Web\Exceptions;
+namespace DrdPlus\RulesSkeletonWeb\Exceptions;
 
 interface Exception
 {

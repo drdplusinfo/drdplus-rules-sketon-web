@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace DrdPlus\Tests\RulesSkeleton\Web;
+namespace DrdPlus\Tests\RulesSkeletonWeb;
 
-use DrdPlus\RulesSkeleton\Web\RulesHtmlHelper;
+use DrdPlus\RulesSkeletonWeb\RulesHtmlHelper;
 use Granam\String\StringTools;
 use Granam\WebContentBuilder\HtmlDocument;
 use Gt\Dom\Element;
