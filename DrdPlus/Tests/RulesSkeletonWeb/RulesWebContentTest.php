@@ -3,9 +3,6 @@ declare(strict_types=1);
 
 namespace DrdPlus\Tests\RulesSkeletonWeb;
 
-use DrdPlus\RulesSkeletonWeb\RulesWebContent;
-use Granam\WebContentBuilder\HtmlHelper;
-
 class RulesWebContentTest extends AbstractContentTest
 {
     /**
@@ -13,12 +10,7 @@ class RulesWebContentTest extends AbstractContentTest
      */
     public function I_can_get_content(): void
     {
-        self::assertSame($this->getHtmlDocument()->saveHTML(), $this->getRulesContent()->getValue());
-    }
-
-    private function getRulesContent(): RulesWebContent
-    {
-        return new RulesWebContent($this->getDirs(), new HtmlHelper($this->getDirs()));
+        self::assertSame($this->getHtmlDocument()->saveHTML(), $this->getRulesWebContent()->getValue());
     }
 
     /**
@@ -28,7 +20,7 @@ class RulesWebContentTest extends AbstractContentTest
     {
         $percents = $this->getTextsSimilarityPercents(
             $this->getHtmlDocument()->head->innerHTML,
-            $this->getRulesContent()->getHead()->getHeadString()
+            $this->getRulesWebContent()->getHtmlDocument()->head->innerHTML
         );
         self::assertGreaterThan(75, $percents);
     }
@@ -47,7 +39,7 @@ class RulesWebContentTest extends AbstractContentTest
     {
         $percents = $this->getTextsSimilarityPercents(
             $this->getHtmlDocument()->body->innerHTML,
-            $this->getRulesContent()->getBody()->getBodyString()
+            $this->getRulesWebContent()->getHtmlDocument()->body->innerHTML
         );
         self::assertGreaterThan(75, $percents);
     }

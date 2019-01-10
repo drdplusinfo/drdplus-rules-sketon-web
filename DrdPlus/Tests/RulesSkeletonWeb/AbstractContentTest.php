@@ -8,6 +8,11 @@ use Granam\Tests\Tools\TestWithMockery;
 use Granam\WebContentBuilder\Dirs;
 use Granam\WebContentBuilder\HtmlDocument;
 use Granam\WebContentBuilder\HtmlHelper;
+use Granam\WebContentBuilder\Web\Body;
+use Granam\WebContentBuilder\Web\CssFiles;
+use Granam\WebContentBuilder\Web\Head;
+use Granam\WebContentBuilder\Web\JsFiles;
+use Granam\WebContentBuilder\Web\WebFiles;
 
 abstract class AbstractContentTest extends TestWithMockery
 {
@@ -17,16 +22,19 @@ abstract class AbstractContentTest extends TestWithMockery
     private $testsConfiguration;
     /** @var Dirs */
     private $dirs;
-    /** @var RulesWebContent */
-    private $rulesContent;
 
     protected function getHtmlDocument(): HtmlDocument
     {
-        if ($this->rulesContent === null) {
-            $this->rulesContent = new RulesWebContent($this->getDirs(), new HtmlHelper($this->getDirs()));
-        }
+        return $this->getRulesWebContent()->getHtmlDocument();
+    }
 
-        return $this->rulesContent->getHtmlDocument();
+    protected function getRulesWebContent(): RulesWebContent
+    {
+        $htmlHelper = new HtmlHelper($this->getDirs());
+        $head = new Head($htmlHelper, new CssFiles($this->getDirs(), true), new JsFiles($this->getDirs(), true));
+        $body = new Body(new WebFiles($this->getDirs()->getWebRoot()));
+
+        return new RulesWebContent($htmlHelper, $head, $body);
     }
 
     protected function isSkeletonChecked(string $skeletonProjectRoot = null): bool

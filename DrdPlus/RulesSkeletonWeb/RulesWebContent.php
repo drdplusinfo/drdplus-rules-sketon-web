@@ -5,33 +5,28 @@ namespace DrdPlus\RulesSkeletonWeb;
 
 use Granam\Strict\Object\StrictObject;
 use Granam\String\StringInterface;
-use Granam\WebContentBuilder\Dirs;
 use Granam\WebContentBuilder\HtmlDocument;
 use Granam\WebContentBuilder\HtmlHelper;
 use Granam\WebContentBuilder\Web\Body;
 use Granam\WebContentBuilder\Web\Content;
-use Granam\WebContentBuilder\Web\CssFiles;
 use Granam\WebContentBuilder\Web\Head;
-use Granam\WebContentBuilder\Web\JsFiles;
-use Granam\WebContentBuilder\Web\WebFiles;
 
 class RulesWebContent extends StrictObject implements StringInterface
 {
-    /** @var Content */
-    private $content;
-    /** @var Dirs */
-    private $dirs;
     /** @var HtmlHelper */
     private $htmlHelper;
     /** @var Body */
     private $body;
     /** @var Head */
     private $head;
+    /** @var Content */
+    private $content;
 
-    public function __construct(Dirs $dirs, HtmlHelper $htmlHelper)
+    public function __construct(HtmlHelper $htmlHelper, Head $head, Body $body)
     {
-        $this->dirs = $dirs;
         $this->htmlHelper = $htmlHelper;
+        $this->head = $head;
+        $this->body = $body;
     }
 
     public function __toString()
@@ -49,28 +44,10 @@ class RulesWebContent extends StrictObject implements StringInterface
         return $this->getContent()->getHtmlDocument();
     }
 
-    public function getBody(): Body
-    {
-        if ($this->body === null) {
-            $this->body = new Body(new WebFiles($this->dirs->getWebRoot()));
-        }
-
-        return $this->body;
-    }
-
-    public function getHead(): Head
-    {
-        if ($this->head === null) {
-            $this->head = new Head($this->htmlHelper, new CssFiles($this->dirs, true), new JsFiles($this->dirs, true));
-        }
-
-        return $this->head;
-    }
-
     protected function getContent(): Content
     {
         if (!$this->content) {
-            $this->content = $this->buildContent($this->htmlHelper, $this->getHead(), $this->getBody());
+            $this->content = $this->buildContent($this->htmlHelper, $this->head, $this->body);
         }
 
         return $this->content;
