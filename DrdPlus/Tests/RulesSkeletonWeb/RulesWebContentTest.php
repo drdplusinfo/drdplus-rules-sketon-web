@@ -43,4 +43,15 @@ class RulesWebContentTest extends AbstractContentTest
         );
         self::assertGreaterThan(75, $percents);
     }
+
+    /**
+     * @test
+     */
+    public function Body_has_container_bootstrap_class(): void
+    {
+        self::assertTrue(
+            $this->getRulesWebContent()->getHtmlDocument()->body->classList->contains('container'),
+            'Body should has "container" class to be usable for Bootstrap'
+        );
+    }
 }
