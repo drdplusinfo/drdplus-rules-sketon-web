@@ -308,7 +308,7 @@
             "source": {
                 "type": "git",
                 "url": "/home/jaroslav/projects/granam/web-content-builder",
-                "reference": "c81ba2bdfd19a518bd3a676f931441a7acec70ce"
+                "reference": "5d995593494ac293c92e0873bcea0fbb0f23bf94"
             },
             "require": {
                 "composer-plugin-api": "^1.1",
@@ -350,7 +350,7 @@
                 "html",
                 "web"
             ],
-            "time": "2019-01-10T12:40:10+00:00"
+            "time": "2019-01-11T07:07:58+00:00"
         },
         {
             "name": "granam/yaml-reader",
