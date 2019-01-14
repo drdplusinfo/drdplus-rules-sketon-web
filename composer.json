@@ -23,7 +23,7 @@
     "phpgt/dom": "^1.1",
     "granam/exceptions-hierarchy": "^4.0",
     "granam/yaml-reader": "^1.0",
-    "granam/web-content-builder": "dev-master"
+    "granam/web-content-builder": "^1.0"
   },
   "require-dev": {
     "phpunit/phpunit": "^7.3",
