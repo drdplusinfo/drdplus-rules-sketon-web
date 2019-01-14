@@ -25,6 +25,10 @@ class TableOfContentTest extends AbstractContentTest
 
             return;
         }
+        self::assertNotEmpty(
+            $tableOfContent,
+            sprintf('Some table of content under ID %s expected due to tests configuration', HtmlHelper::toId('table_of_content'))
+        );
         $contents = $tableOfContent->getElementsByClassName('content');
         self::assertNotEmpty(
             $contents,
