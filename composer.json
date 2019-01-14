@@ -15,12 +15,6 @@
       "DrdPlus\\": "DrdPlus/"
     }
   },
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "/home/jaroslav/projects/granam/web-content-builder"
-    }
-  ],
   "require": {
     "ext-dom": "*",
     "ext-yaml": "*",
