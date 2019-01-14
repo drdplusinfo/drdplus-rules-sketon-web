@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace DrdPlus\Tests\RulesSkeleton\Web;
+namespace DrdPlus\Tests\RulesSkeletonWeb;
 
 use Granam\Strict\Object\StrictObject;
 use Granam\YamlReader\YamlFileReader;
 
-class TestsConfiguration extends StrictObject
+class WebTestsConfiguration extends StrictObject
 {
     public const HAS_TABLES = 'has_tables';
     public const SOME_EXPECTED_TABLE_IDS = 'some_expected_table_ids';
@@ -26,9 +26,9 @@ class TestsConfiguration extends StrictObject
 
     /**
      * @param array $values
-     * @throws \DrdPlus\Tests\RulesSkeleton\Web\Exceptions\InvalidLocalUrl
-     * @throws \DrdPlus\Tests\RulesSkeleton\Web\Exceptions\InvalidPublicUrl
-     * @throws \DrdPlus\Tests\RulesSkeleton\Web\Exceptions\PublicUrlShouldUseHttps
+     * @throws \DrdPlus\Tests\RulesSkeletonWeb\Exceptions\InvalidLocalUrl
+     * @throws \DrdPlus\Tests\RulesSkeletonWeb\Exceptions\InvalidPublicUrl
+     * @throws \DrdPlus\Tests\RulesSkeletonWeb\Exceptions\PublicUrlShouldUseHttps
      */
     public function __construct(array $values)
     {
@@ -48,7 +48,7 @@ class TestsConfiguration extends StrictObject
     /**
      * @param array $values
      * @param bool $hasTables
-     * @throws \DrdPlus\Tests\RulesSkeleton\Web\Exceptions\InvalidSomeExpectedTableIdsTestsConfiguration
+     * @throws \DrdPlus\Tests\RulesSkeletonWeb\Exceptions\InvalidSomeExpectedTableIdsTestsConfiguration
      */
     private function setSomeExpectedTableIds(array $values, bool $hasTables): void
     {
