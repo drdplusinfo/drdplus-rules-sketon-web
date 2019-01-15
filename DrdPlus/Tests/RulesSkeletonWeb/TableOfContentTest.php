@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace DrdPlus\Tests\RulesSkeleton;
+namespace DrdPlus\Tests\RulesSkeletonWeb;
 
 use DrdPlus\Tests\RulesSkeletonWeb\AbstractContentTest;
 use Granam\WebContentBuilder\HtmlHelper;
