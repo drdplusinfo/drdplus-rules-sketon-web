@@ -1,4 +1,3 @@
-has_tables: true
 some_expected_table_ids:
   - IAmSoAlone
   - JustSomeTable

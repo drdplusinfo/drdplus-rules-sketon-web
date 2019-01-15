@@ -11,6 +11,8 @@ class WebTestsConfiguration extends StrictObject
     public const HAS_TABLES = 'has_tables';
     public const SOME_EXPECTED_TABLE_IDS = 'some_expected_table_ids';
     public const HAS_TABLE_OF_CONTENTS = 'has_table_of_contents';
+    public const HAS_HEADINGS = 'has_headings';
+    public const HAS_AUTHORS = 'has_authors';
 
     public static function createFromYaml(string $yamlConfigFile)
     {
@@ -23,6 +25,10 @@ class WebTestsConfiguration extends StrictObject
     private $someExpectedTableIds = [];
     /** @var bool */
     private $hasTableOfContents = true;
+    /** @var bool */
+    private $hasHeadings = true;
+    /** @var bool */
+    private $hasAuthors = true;
 
     /**
      * @param array $values
@@ -35,6 +41,8 @@ class WebTestsConfiguration extends StrictObject
         $this->setHasTables($values);
         $this->setSomeExpectedTableIds($values, $this->hasTables());
         $this->setHasTableOfContents($values);
+        $this->setHasHeadings($values);
+        $this->setHasAuthors($values);
     }
 
     /**
@@ -43,6 +51,11 @@ class WebTestsConfiguration extends StrictObject
     private function setHasTables(array $values): void
     {
         $this->hasTables = (bool)($values[self::HAS_TABLES] ?? $this->hasTables);
+    }
+
+    public function hasTables(): bool
+    {
+        return $this->hasTables;
     }
 
     /**
@@ -88,9 +101,9 @@ class WebTestsConfiguration extends StrictObject
         $this->hasTableOfContents = (bool)($values[self::HAS_TABLE_OF_CONTENTS] ?? true);
     }
 
-    public function hasTables(): bool
+    private function setHasHeadings(array $values): void
     {
-        return $this->hasTables;
+        $this->hasHeadings = (bool)($values[self::HAS_HEADINGS] ?? $this->hasHeadings);
     }
 
     public function getSomeExpectedTableIds(): array
@@ -103,4 +116,18 @@ class WebTestsConfiguration extends StrictObject
         return $this->hasTableOfContents;
     }
 
+    public function hasHeadings(): bool
+    {
+        return $this->hasHeadings;
+    }
+
+    private function setHasAuthors(array $values): void
+    {
+        $this->hasAuthors = (bool)($values[self::HAS_AUTHORS] ?? $this->hasAuthors);
+    }
+
+    public function hasAuthors(): bool
+    {
+        return $this->hasAuthors;
+    }
 }
