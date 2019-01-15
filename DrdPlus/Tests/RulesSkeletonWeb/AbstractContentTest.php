@@ -35,6 +35,16 @@ abstract class AbstractContentTest extends TestWithMockery
         return $rulesWebContent;
     }
 
+    protected function getContent(): string
+    {
+        static $content;
+        if ($content === null) {
+            $content = $this->getRulesWebContent()->getValue();
+        }
+
+        return $content;
+    }
+
     protected function isSkeletonChecked(string $skeletonProjectRoot = null): bool
     {
         static $skeletonChecked;
